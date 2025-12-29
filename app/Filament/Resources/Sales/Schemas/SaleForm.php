@@ -13,6 +13,7 @@ class SaleForm
     public static function configure(Schema $schema): Schema
     {
         return $schema
+            ->columns(2)
             ->components([
                 TextInput::make('customer_name')
                     ->required(),

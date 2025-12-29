@@ -11,8 +11,14 @@ class SaleItem extends Model
         'sale_id',
         'product_id',
         'quantity',
-        'price',
-        'subtotal'
+        'unit_price',
+        'subtotal',
+    ];
+
+    protected $casts =[
+        'unit_price' => 'decimal:2',
+        'subtotal' => 'decimal:2',
+
     ];
 
     public function sale(): BelongsTo
@@ -23,5 +29,17 @@ class SaleItem extends Model
     public function product(): BelongsTo
     {
         return $this->belongsTo(Product::class);
+    }
+     protected static function boot()
+    {
+        parent::boot();
+
+        static::creating(function ($item) {
+            $item->subtotal = $item->quantity * $item->unit_price;
+        });
+
+        static::updating(function ($item) {
+            $item->subtotal = $item->quantity * $item->unit_price;
+        });
     }
 }
