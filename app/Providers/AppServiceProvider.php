@@ -3,6 +3,10 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use App\Models\Sale;
+use App\Models\SaleItem;
+use App\Observers\SaleObserver;
+use App\Observers\SaleItemObserver;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -19,6 +23,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        // Registrar observers
+        Sale::observe(SaleObserver::class);
+        SaleItem::observe(SaleItemObserver::class);
     }
 }

@@ -5,8 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-
-
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Product extends Model
 {
@@ -15,20 +14,19 @@ class Product extends Model
     protected $fillable = [
         'name',
         'description',
-        'category',
+        'category_id',
         'units_available',
         'unit_cost',
         'sales_price',
         'attachment',
     ];
 
-    public $casts = [
+    protected $casts = [
         'unit_cost' => 'decimal:2',
         'sales_price' => 'decimal:2',
     ];
 
-
-        public function category()
+    public function category(): BelongsTo
     {
         return $this->belongsTo(Category::class);
     }
@@ -37,14 +35,18 @@ class Product extends Model
     {
         return $this->hasMany(SaleItem::class);
     }
-     public function reduceStock(int $quantity): void
+
+    public function reduceStock(int $quantity): void
     {
         if ($this->units_available >= $quantity) {
-            $this->units_available -= $quantity;
-            $this->save();
+            $this->decrement('units_available', $quantity);
         } else {
             throw new \Exception("Stock insuficiente para {$this->name}. Disponible: {$this->units_available}");
         }
     }
 
+    public function hasStock(int $quantity): bool
+    {
+        return $this->units_available >= $quantity;
+    }
 }

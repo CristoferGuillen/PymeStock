@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class SaleItem extends Model
 {
+
+    protected $table = 'sales_items';
     protected $fillable = [
         'sale_id',
         'product_id',
@@ -15,10 +17,9 @@ class SaleItem extends Model
         'subtotal',
     ];
 
-    protected $casts =[
+    protected $casts = [
         'unit_price' => 'decimal:2',
         'subtotal' => 'decimal:2',
-
     ];
 
     public function sale(): BelongsTo
@@ -29,17 +30,5 @@ class SaleItem extends Model
     public function product(): BelongsTo
     {
         return $this->belongsTo(Product::class);
-    }
-     protected static function boot()
-    {
-        parent::boot();
-
-        static::creating(function ($item) {
-            $item->subtotal = $item->quantity * $item->unit_price;
-        });
-
-        static::updating(function ($item) {
-            $item->subtotal = $item->quantity * $item->unit_price;
-        });
     }
 }

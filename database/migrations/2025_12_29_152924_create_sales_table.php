@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('invoice_number');
             $table->string('customer_name');
             $table->string('customer_email');
+            $table->date('sale_date');
             $table->decimal('subtotal',10,2)->default(0);
             $table->decimal('total',10,2)->default(0);
             $table->timestamps();

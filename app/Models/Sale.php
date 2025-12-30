@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class Sale extends Model
 {
     protected $fillable = [
+        'invoice_number',
         'customer_name',
         'customer_email',
         'subtotal',
@@ -16,34 +17,13 @@ class Sale extends Model
     ];
 
     protected $casts = [
-        'total' => 'decimal:2'
+        'subtotal' => 'decimal:2',
+        'total' => 'decimal:2',
+        'sale_date' => 'datetime'
     ];
 
     public function saleItems(): HasMany
     {
         return $this->hasMany(SaleItem::class);
     }
-
-    protected static function boot()
-    {
-        parent::boot();
-
-        static::creating(function ($sale) {
-            if (empty($sale->invoice_number)) {
-                $sale->invoice_number = 'INV-' . date('Y') . '-' . str_pad(
-                    static::whereYear('created_at', date('Y'))->count() + 1,
-                    5,
-                    '0',
-                    STR_PAD_LEFT
-                );
-            }
-        });
-    }
-
-    public function calculateTotal(): void
-    {
-        $this->total = $this->items->sum('subtotal');
-        $this->save();
-    }
-
 }
