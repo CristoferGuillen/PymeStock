@@ -23,7 +23,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        // Registrar observers
         Sale::observe(SaleObserver::class);
         SaleItem::observe(SaleItemObserver::class);
     }

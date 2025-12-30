@@ -32,8 +32,7 @@ class SaleObserver
 
     public function updated(Sale $sale): void
     {
-        // Recalcular totales cuando se actualiza la venta
-        // Pero solo si no estamos en medio de una actualización silenciosa
+
         if (!$sale->wasChanged(['subtotal', 'total'])) {
             $this->calculateTotals($sale);
         }
@@ -42,38 +41,27 @@ class SaleObserver
 
     public function deleting(Sale $sale): void
     {
-        // Los items se eliminarán en cascada según la migración
-        // y el SaleItemObserver devolverá el stock
+
     }
 
-    /**
-     * Calcular los totales de la venta basándose en sus items
-     */
+
     private function calculateTotals(Sale $sale): void
     {
-        // Cargar los items si no están cargados
         $sale->loadMissing('saleItems');
         
-        // Calcular subtotal sumando todos los items
         $subtotal = $sale->saleItems->sum('subtotal');
         
-        // Aquí puedes agregar lógica adicional:
-        // - Descuentos
-        // - Impuestos
-        // - Cargos adicionales
+
         
         $total = $subtotal;
         
-        // Actualizar sin disparar eventos adicionales (evitar loop infinito)
         $sale->updateQuietly([
             'subtotal' => $subtotal,
             'total' => $total,
         ]);
     }
 
-    /**
-     * Generar un número de factura único
-     */
+
     private function generateInvoiceNumber(): string
     {
         $year = date('Y');
