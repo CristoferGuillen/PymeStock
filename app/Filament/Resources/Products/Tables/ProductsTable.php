@@ -9,6 +9,7 @@ use Filament\Actions\ForceDeleteBulkAction;
 use Filament\Actions\RestoreBulkAction;
 use Filament\Actions\ViewAction;
 use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Columns\ImageColumn;
 use Filament\Tables\Filters\TrashedFilter;
 use Filament\Tables\Table;
 
@@ -19,18 +20,30 @@ class ProductsTable
         return $table
             ->columns([
                 TextColumn::make('name')
-                    ->searchable(),
+                    ->searchable()
+                    ->label('Producto'),
+                ImageColumn::make('attachment')
+                    ->label('imagen')
+                    ->imageHeight(50)
+                    ->circular(),
                 TextColumn::make('description')
-                    ->searchable(),
+                    ->searchable()
+                    ->label('Descripción'),
                 TextColumn::make('category_id')
                     ->numeric()
+                    ->sortable()
+                    ->label('Categoria'),
+                TextColumn::make('units_available')
+                    ->label('Unidades')
                     ->sortable(),
                 TextColumn::make('unit_cost')
                     ->money()
-                    ->sortable(),
+                    ->sortable()
+                    ->label('Costo por unidad'),
                 TextColumn::make('sales_price')
                     ->money()
-                    ->sortable(),
+                    ->sortable()
+                    ->label('Precio de venta'),
                 TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()
