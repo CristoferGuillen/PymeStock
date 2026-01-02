@@ -17,6 +17,7 @@ use Illuminate\Cookie\Middleware\EncryptCookies;
 use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken;
 use Illuminate\Routing\Middleware\SubstituteBindings;
 use Illuminate\Session\Middleware\StartSession;
+use Filament\Support\Facades\FilamentColor;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
 
 class AdminPanelProvider extends PanelProvider
@@ -53,7 +54,27 @@ class AdminPanelProvider extends PanelProvider
                 DispatchServingFilamentEvent::class,
             ])
             ->authMiddleware([
-                Authenticate::class,
-            ]);
+                Authenticate::class
+            ])
+
+            ->bootUsing(function (){
+                FilamentColor::register([
+                    'danger' => [
+                        50 => 'oklch(97.7% 0.013 236.62)',
+                        100 => 'oklch(95.1% 0.026 236.824)',
+                        200 => 'oklch(90.1% 0.058 230.902)',
+                        300 => 'oklch(82.8% 0.111 230.318)',
+                        400 => 'oklch(74.6% 0.16 232.661)',
+                        500 => 'oklch(68.5% 0.169 237.323)',
+                        600 => 'oklch(58.8% 0.158 241.966)',
+                        700 => 'oklch(50% 0.134 242.749)',
+                        800 => 'oklch(44.3% 0.11 240.79)',
+                        900 => 'oklch(37.9% 0.146 265.522)',
+                        950 => 'oklch(29.3% 0.066 243.157)',
+                    ],
+                ]);
+
+             });
+            
     }
 }

@@ -3,13 +3,12 @@
 namespace App\Filament\Resources\Products\Pages;
 
 use App\Filament\Resources\Products\ProductResource;
-use Filament\Actions\CreateAction;
 use Filament\Resources\Pages\ListRecords;
-use Filament\Actions\View\ActionsIconAlias;
-use Filament\Actions\Action;
-use Filament\Forms\Components\Toggle;
+use Filament\Tables\Table;
+use Filament\Actions\CreateAction;
+use Filament\Actions\EditAction;
+use Filament\Actions\ViewAction;
 use Filament\Support\Icons\Heroicon;
-use GrahamCampbell\ResultType\Success;
 
 class ListProducts extends ListRecords
 {
@@ -20,7 +19,26 @@ class ListProducts extends ListRecords
         return [
             CreateAction::make()
                 ->icon(Heroicon::PlusCircle)
-                ->color('primary'),
+                ->color('danger'),
+
+
         ];
+    }
+
+    public function table(Table $table): Table {
+        return $table
+        ->recordactions ([
+
+            ViewAction::make()
+                ->icon(Heroicon::Eye)
+                ->color('info'),
+
+            EditAction::make()
+                ->icon(Heroicon::PencilSquare)
+                ->color('warning'),
+
+
+
+        ]);
     }
 }
