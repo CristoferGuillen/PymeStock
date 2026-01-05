@@ -18,7 +18,8 @@ class ListProducts extends ListRecords
     {
         return [
             CreateAction::make()
-                ->icon(Heroicon::PlusCircle),
+                ->icon(Heroicon::PlusCircle)
+                ->label('Nuevo Producto'),
 
 
         ];
@@ -30,11 +31,13 @@ class ListProducts extends ListRecords
 
             ViewAction::make()
                 ->icon(Heroicon::Eye)
-                ->color('info'),
+                ->color('info')
+                ->label('Ver Producto'),
 
             EditAction::make()
                 ->icon(Heroicon::PencilSquare)
-                ->color('warning'),
+                ->color('warning')
+                ->label('Editar Producto'),
 
 
 

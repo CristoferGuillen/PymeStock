@@ -17,7 +17,9 @@ class ListCategories extends ListRecords
     protected function getHeaderActions(): array
     {
         return [
-            CreateAction::make(),
+            CreateAction::make()
+            ->label('Nueva Categoria')
+                ->icon(Heroicon::PlusCircle),
         ];
     }
 
@@ -27,11 +29,13 @@ class ListCategories extends ListRecords
 
             ViewAction::make()
                 ->icon(Heroicon::Eye)
-                ->color('info'),
+                ->color('info')
+                ->label('Ver Categoria'),
 
             EditAction::make()
                 ->icon(Heroicon::PencilSquare)
-                ->color('warning'),
+                ->color('warning')
+                ->label('Editar Categoria'),
 
 
 

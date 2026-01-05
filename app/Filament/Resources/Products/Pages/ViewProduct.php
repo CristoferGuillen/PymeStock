@@ -5,6 +5,7 @@ namespace App\Filament\Resources\Products\Pages;
 use App\Filament\Resources\Products\ProductResource;
 use Filament\Actions\EditAction;
 use Filament\Resources\Pages\ViewRecord;
+use Filament\Support\Icons\Heroicon;
 
 class ViewProduct extends ViewRecord
 {
@@ -12,8 +13,11 @@ class ViewProduct extends ViewRecord
 
     protected function getHeaderActions(): array
     {
-        return [
-            EditAction::make(),
+        return [           
+            EditAction::make()
+            ->label('Editar Producto')
+            ->icon(Heroicon::PencilSquare)
+                ->color('warning'),
         ];
     }
 }

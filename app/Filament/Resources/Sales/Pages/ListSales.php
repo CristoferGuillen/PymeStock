@@ -29,12 +29,13 @@ class ListSales extends ListRecords
 
             ViewAction::make()
                 ->icon(Heroicon::Eye)
-                ->color('info'),
+                ->color('info')
+                ->label('Ver Venta'),
 
             EditAction::make()
                 ->icon(Heroicon::PencilSquare)
-                ->color('warning'),
-
+                ->color('warning')
+                ->label('Editar Venta'),
 
 
         ]);
