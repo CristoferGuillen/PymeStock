@@ -4,11 +4,11 @@ namespace App\Filament\Resources\Sales;
 
 use App\Filament\Resources\Sales\Pages\CreateSale;
 use App\Filament\Resources\Sales\Pages\EditSale;
-use App\Filament\Resources\Sales\Pages\ListSales;
 use App\Filament\Resources\Sales\Pages\ViewSale;
 use App\Filament\Resources\Sales\Schemas\SaleForm;
 use App\Filament\Resources\Sales\Schemas\SaleInfolist;
 use App\Filament\Resources\Sales\Tables\SalesTable;
+use App\Filament\Resources\Sales\Pages\ListSales;
 use App\Models\Sale;
 use BackedEnum;
 use Filament\Resources\Resource;
@@ -20,7 +20,15 @@ class SaleResource extends Resource
 {
     protected static ?string $model = Sale::class;
 
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
+    protected static string|BackedEnum|null $navigationIcon = Heroicon::ShoppingCart;
+
+    protected static ?string $navigationLabel = 'Ventas';
+
+    protected static ?string $modelLabel = 'Venta';
+
+    protected static ?string $pluralModelLabel = 'Ventas';
+
+    protected static ?int $navigationSort = 4;
 
     protected static ?string $recordTitleAttribute = 'customer_name';
 

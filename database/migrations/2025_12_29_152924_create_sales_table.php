@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('invoice_number');
             $table->string('customer_name');
-            $table->string('customer_email');
+            $table->string('customer_email')->nullable();
             $table->date('sale_date');
             $table->decimal('subtotal',10,2)->default(0);
             $table->decimal('total',10,2)->default(0);

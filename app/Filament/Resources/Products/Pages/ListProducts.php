@@ -18,8 +18,7 @@ class ListProducts extends ListRecords
     {
         return [
             CreateAction::make()
-                ->icon(Heroicon::PlusCircle)
-                ->color('danger'),
+                ->icon(Heroicon::PlusCircle),
 
 
         ];

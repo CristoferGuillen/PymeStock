@@ -8,6 +8,7 @@ use Filament\Actions\EditAction;
 use Filament\Actions\ViewAction;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
+use Filament\Support\Icons\Heroicons;
 
 class SalesTable
 {
@@ -15,17 +16,39 @@ class SalesTable
     {
         return $table
             ->columns([
+                TextColumn::make('invoice_number')
+                    ->label('N° De Factura')
+                    ->searchable()
+                    ->sortable()
+                    ->badge()
+                    ->color('primary')
+                    ->icon('heroicon-o-document-text')
+                    ->copyable()
+                    ->copyMessage('¡Número de factura copiado al portapapeles!'),
                 TextColumn::make('customer_name')
-                    ->searchable(),
+                    ->label('Cliente')
+                    ->searchable()
+                    ->sortable()
+                    ->icon('heroicon-o-user')
+                    ->description(fn ($record): string => $record->customer_email ?? 'Sin Correo Electrónico')
+                    ->limit(20)
+                    ->tooltip(fn ($record): string => $record->customer_email ?? 'Sin Correo Electrónico'),
                 TextColumn::make('customer_email')
-                    ->searchable(),
+                    ->label('Correo Electrónico Cliente')
+                    ->searchable()
+                    ->icon('heroicon-o-envelope')
+                    ->copyable()
+                    ->toggleable(isToggledHiddenByDefault: true),
                 TextColumn::make('subtotal')
                     ->numeric()
-                    ->sortable(),
+                    ->sortable()
+                    ->prefix('$'),
                 TextColumn::make('total')
                     ->numeric()
-                    ->sortable(),
+                    ->sortable()
+                    ->prefix('$'),
                 TextColumn::make('created_at')
+                    ->label('Fecha de Venta')
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),

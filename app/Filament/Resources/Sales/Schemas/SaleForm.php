@@ -29,7 +29,6 @@ class SaleForm
                         TextInput::make('customer_email')
                             ->label('Email del Cliente')
                             ->email()
-                            ->required()
                             ->maxLength(255),
 
                         DateTimePicker::make('sale_date')
