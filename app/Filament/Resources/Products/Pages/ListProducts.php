@@ -38,9 +38,6 @@ class ListProducts extends ListRecords
                 ->icon(Heroicon::PencilSquare)
                 ->color('warning')
                 ->label('Editar Producto'),
-
-
-
         ]);
     }
 }
