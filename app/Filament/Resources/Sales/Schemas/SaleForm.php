@@ -11,6 +11,7 @@ use Filament\Notifications\Notification;
 use Filament\Schemas\Components\Section;
 use Filament\Schemas\Schema;
 
+
 class SaleForm
 {
     public static function configure(Schema $schema): Schema

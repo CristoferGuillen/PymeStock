@@ -7,8 +7,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class SaleItem extends Model
 {
-
-    protected $table = 'sales_items';
+     protected $table = 'sales_items';
     protected $fillable = [
         'sale_id',
         'product_id',
@@ -18,6 +17,7 @@ class SaleItem extends Model
     ];
 
     protected $casts = [
+        'quantity' => 'integer',
         'unit_price' => 'decimal:2',
         'subtotal' => 'decimal:2',
     ];
