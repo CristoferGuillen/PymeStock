@@ -36,6 +36,11 @@ class Product extends Model
         return $this->hasMany(SaleItem::class);
     }
 
+        public function stockEntryItems(): HasMany
+    {
+        return $this->hasMany(StockEntryItem::class);
+    }
+
     public function reduceStock(int $quantity): void
     {
         if ($this->units_available >= $quantity) {
@@ -48,5 +53,10 @@ class Product extends Model
     public function hasStock(int $quantity): bool
     {
         return $this->units_available >= $quantity;
+    }
+
+    public function increaseStock(int $quantity): void
+    {
+        $this->increment('units_available', $quantity);
     }
 }

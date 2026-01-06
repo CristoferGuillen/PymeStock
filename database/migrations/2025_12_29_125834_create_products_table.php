@@ -19,9 +19,9 @@ return new class extends Migration
                 ->nullable()
                 ->constrained('categories')
                 ->onDelete('restrict');
-            $table->integer('units_available');
-            $table->float('unit_cost');
-            $table->float('sales_price');
+            $table->unsignedInteger('units_available');
+            $table->decimal('unit_cost');
+            $table->decimal('sales_price',15,2);
             $table->string('attachment')->nullable();
             $table->softDeletes();
             $table->timestamps();

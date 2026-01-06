@@ -17,8 +17,8 @@ return new class extends Migration
             $table->string('customer_name');
             $table->string('customer_email')->nullable();
             $table->date('sale_date');
-            $table->decimal('subtotal',10,2)->default(0);
-            $table->decimal('total',10,2)->default(0);
+            $table->decimal('subtotal',15,2)->default(0);
+            $table->decimal('total',15,2)->default(0);
             $table->timestamps();
         });
     }

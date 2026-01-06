@@ -6,28 +6,21 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
     public function up(): void
     {
-        Schema::create('sales_items', function (Blueprint $table) {
+        Schema::create('stock_entry_items', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('sale_id')
-                ->constrained()
-                ->cascadeOnDelete();
-            $table->foreignId('product_id')
-                ->constrained();
+            $table->foreignId('stock_entry_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('product_id')->constrained();
             $table->unsignedInteger('quantity');
-            $table->decimal('unit_price',15,2);
+            $table->decimal('unit_cost',15,2);
             $table->decimal('subtotal',15,2);
             $table->timestamps();
         });
     }
 
-
     public function down(): void
     {
-        Schema::dropIfExists('sales_items');
+        Schema::dropIfExists('stock_entry_items');
     }
 };
