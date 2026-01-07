@@ -24,7 +24,8 @@ class SaleInfolist
                     ->schema([
                         TextEntry::make('sale_date')
                             ->dateTime()
-                            ->label('Fecha de la Venta'),
+                            ->label('Fecha de la Venta')
+                            ->icon('heroicon-o-calendar'),
                         TextEntry::make('invoice_number')
                             ->placeholder('-')
                             ->label('Número de Factura'),

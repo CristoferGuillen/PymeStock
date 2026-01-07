@@ -13,7 +13,7 @@ class ProductInfolist
     {
         return $schema
             ->components([
-                Section::make('Detalles del Producto')
+            Section::make('Detalles del Producto')
             ->schema([
                 TextEntry::make('name')
                     ->label('Nombre del Producto'),
@@ -32,10 +32,12 @@ class ProductInfolist
                 TextEntry::make('created_at')
                     ->dateTime()
                     ->placeholder('-')
+                    ->icon('heroicon-o-calendar')
                     ->label('Fecha de Creación'),
                 TextEntry::make('updated_at')
                     ->dateTime()
                     ->placeholder('-')
+                    ->icon('heroicon-o-calendar')
                     ->label('Fecha de Actualización'),
                      ]),
 

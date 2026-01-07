@@ -19,12 +19,13 @@ class CreateProduct extends CreateRecord
         return [
 
             $this->getCreateFormAction()
-                ->color('info'),
-
-            $this->getCreateAnotherFormAction()
-                ->color ('gray'),
+                ->label('Crear Producto')
+                ->icon(Heroicon::PlusCircle)
+                ,
             $this->getCancelFormAction()
-                ->color ('danger'),
+                ->color ('danger')
+                ->label('Cancelar')
+                ->icon(Heroicon::XCircle),
 
         ];
     }

@@ -5,6 +5,7 @@ namespace App\Filament\Resources\Categories\Schemas;
 use App\Models\Category;
 use Filament\Infolists\Components\TextEntry;
 use Filament\Schemas\Schema;
+use Filament\Schemas\Components\Section;
 
 class CategoryInfolist
 {
@@ -12,17 +13,23 @@ class CategoryInfolist
     {
         return $schema
             ->components([
-                TextEntry::make('name'),
-                TextEntry::make('description'),
-                TextEntry::make('deleted_at')
-                    ->dateTime()
-                    ->visible(fn (Category $record): bool => $record->trashed()),
+                Section::make('Detalles de la Categoría')
+            ->schema([ 
+                TextEntry::make('name')
+                ->label('Nombre'),
+                TextEntry::make('description')
+                ->label('Descripción'),
                 TextEntry::make('created_at')
                     ->dateTime()
-                    ->placeholder('-'),
+                    ->placeholder('-')
+                    ->icon('heroicon-o-calendar')
+                    ->label('Creado El'),
                 TextEntry::make('updated_at')
                     ->dateTime()
-                    ->placeholder('-'),
+                    ->placeholder('-')
+                    ->icon('heroicon-o-calendar')
+                    ->label('Actualizado El'),
+            ]),
             ]);
     }
 }

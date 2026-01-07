@@ -4,10 +4,28 @@ namespace App\Filament\Resources\Sales\Pages;
 
 use Filament\Resources\Pages\CreateRecord;
 use App\Filament\Resources\Sales\SaleResource;
+use Filament\Support\Icons\Heroicon;
 
 class CreateSale extends CreateRecord
 {
     protected static string $resource = SaleResource::class;
+
+
+     public function getFormActions(): array
+    {
+        return [
+
+            $this->getCreateFormAction()
+                ->label('Crear Venta')
+                ->icon(Heroicon::PlusCircle)
+                ,
+            $this->getCancelFormAction()
+                ->color ('danger')
+                ->label('Cancelar')
+                ->icon(Heroicon::XCircle),
+
+        ];
+    }
 
     protected function mutateFormDataBeforeCreate(array $data): array
     {

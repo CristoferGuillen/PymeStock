@@ -30,12 +30,12 @@ class ListCategories extends ListRecords
             ViewAction::make()
                 ->icon(Heroicon::Eye)
                 ->color('info')
-                ->label('Ver Categoria'),
+                ->label('Ver '),
 
             EditAction::make()
                 ->icon(Heroicon::PencilSquare)
                 ->color('warning')
-                ->label('Editar Categoria'),
+                ->label('Editar '),
 
 
 
