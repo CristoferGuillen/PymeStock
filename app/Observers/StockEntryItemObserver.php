@@ -8,14 +8,24 @@ class StockEntryItemObserver
 {
     public function creating(StockEntryItem $item): void
     {
+        $product = $item->product;
+        $item->prev_unit_cost = $product->unit_cost;
+        $item->prev_status = $product->status;
         $item->subtotal = $item->quantity * $item->unit_cost;
     }
 
 
     public function created(StockEntryItem $item): void
     {
-        $item->product->increment('units_available', $item->quantity);
-        $this->recalculateStockEntryTotal($item->stockEntry);
+    $product = $item->product;
+    
+    $product->update([
+        'units_available' => $product->units_available + $item->quantity,
+        'unit_cost' => $item->unit_cost,
+        'status' => 'pending_pricing',
+    ]);
+    
+    $this->recalculateStockEntryTotal($item->stockEntry);
     }
 
 
@@ -37,13 +47,28 @@ class StockEntryItemObserver
             $item->product->decrement('units_available', abs($difference));
         }
 
+    if ($item->isDirty('unit_cost')) {
+            $item->product->update([
+                'unit_cost' => $item->unit_cost,
+                'status' => 'pending_pricing',
+            ]);
+        }
+
         $this->recalculateStockEntryTotal($item->stockEntry);
     }
 
 
     public function deleted(StockEntryItem $item): void
     {
-        $item->product->decrement('units_available', $item->quantity);
+
+        $product = $item->product;
+        $product->descrement('units_available', $item->quantity);
+
+        $product->update([
+            'unit_cost' => $item->prev_unit_cost ?? $product->unit_cost,
+            'status' => $item->prev_status ?? $product->status,
+        ]);
+
         $this->recalculateStockEntryTotal($item->stockEntry);
     }
 

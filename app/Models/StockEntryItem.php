@@ -13,12 +13,17 @@ class StockEntryItem extends Model
         'quantity',
         'unit_cost',
         'subtotal',
+        'prev_unit_cost',
+        'prev_units_available',
+        'prev_status',
     ];
 
     protected $casts = [
         'quantity' => 'integer',
         'unit_cost' => 'decimal:2',
         'subtotal' => 'decimal:2',
+        'prev_unit_cost' => 'decimal:2',
+        'prev_units_available' => 'integer',
     ];
 
     public function stockEntry(): BelongsTo

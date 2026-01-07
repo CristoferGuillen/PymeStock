@@ -23,6 +23,7 @@ return new class extends Migration
             $table->decimal('unit_cost');
             $table->decimal('sales_price',15,2);
             $table->string('attachment')->nullable();
+            $table->enum('status', ['in_stock', 'out_of_stock', 'pending_pricing'])->default('in_stock');
             $table->softDeletes();
             $table->timestamps();
         });

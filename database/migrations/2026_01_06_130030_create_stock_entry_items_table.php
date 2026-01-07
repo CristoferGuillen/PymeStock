@@ -15,6 +15,9 @@ return new class extends Migration
             $table->unsignedInteger('quantity');
             $table->decimal('unit_cost',15,2);
             $table->decimal('subtotal',15,2);
+            $table->decimal('prev_unit_cost',15,2)->nullable();
+            $table->unsignedInteger('prev_units_available')->nullable();
+            $table->string('prev_status')->nullable();
             $table->timestamps();
         });
     }

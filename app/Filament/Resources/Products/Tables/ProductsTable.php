@@ -44,6 +44,16 @@ class ProductsTable
                     ->money()
                     ->sortable()
                     ->label('Precio de venta'),
+                TextColumn::make('status')
+                    ->sortable()
+                    ->label('Estado')
+                    ->badge()
+                    ->color(fn (string $state): string => match ($state) {
+                        'pending_pricing' => 'warning',
+                        'in_stock' => 'success',
+                        'out_of_stock' => 'danger',
+                    })
+                    ,
                 TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()

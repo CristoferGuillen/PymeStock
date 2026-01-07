@@ -32,12 +32,12 @@ class ListProducts extends ListRecords
             ViewAction::make()
                 ->icon(Heroicon::Eye)
                 ->color('info')
-                ->label('Ver Producto'),
+                ->label('Ver '),
 
             EditAction::make()
                 ->icon(Heroicon::PencilSquare)
                 ->color('warning')
-                ->label('Editar Producto'),
+                ->label('Editar '),
         ]);
     }
 }
