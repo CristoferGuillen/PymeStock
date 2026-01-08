@@ -31,7 +31,7 @@ class PriceManagementResource extends Resource
 
     protected static ?string $pluralModelLabel = 'Gestión de Precios';
 
-    protected static ?int $navigationSort = 3;
+    protected static ?int $navigationSort = 5;
 
     public static function form(Schema $schema): Schema
     {
@@ -53,6 +53,19 @@ class PriceManagementResource extends Resource
         return [
             //
         ];
+    }
+
+    public static function getNavigationBadge(): ?string
+    {
+        $count = static::getEloquentQuery()->count();
+        
+
+        return $count > 0 ?  (string)$count : null;
+    }
+
+    public static function getNavigationBadgeColor(): ?string
+    {
+        return 'warning';
     }
 
     public static function getEloquentQuery(): Builder

@@ -29,14 +29,12 @@ class PriceManagementTable
                     ->label('Precio de Compra')
                     ->money()
                     ->sortable(),
-
                 TextColumn::make('units_available')
                     ->label('Unidades')
                     ->numeric()
                     ->alignCenter()
                     ->badge()
                     ->color('warning'),
-
                 TextColumn::make('status')
                     ->label('Estado')
                     ->badge()

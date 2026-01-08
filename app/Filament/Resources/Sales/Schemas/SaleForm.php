@@ -47,6 +47,7 @@ class SaleForm
                                     ->label('Producto')
                                     ->options(
                                         Product::query()
+                                            ->where('status', 'in_stock')
                                             ->where('units_available', '>', 0)
                                             ->pluck('name', 'id')
                                     )
