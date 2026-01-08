@@ -29,9 +29,10 @@ class ProductsTable
                 TextColumn::make('description')
                     ->searchable()
                     ->label('Descripción'),
-                TextColumn::make('category_id')
-                    ->numeric()
+                TextColumn::make('category.name')
                     ->sortable()
+                    ->badge()
+                    ->color('info')
                     ->label('Categoria'),
                 TextColumn::make('units_available')
                     ->label('Unidades')
