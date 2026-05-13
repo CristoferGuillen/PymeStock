@@ -101,7 +101,7 @@ class ProductSeeder extends Seeder
                     'unit_cost' => $data['unit_cost'],
                     'sales_price' => $data['sales_price'],
                     'attachment' => null,
-                    'status' => true,
+                    'status' => 'in_stock',
                 ]
             );
         }
